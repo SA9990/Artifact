@@ -15,9 +15,10 @@ jobs:
 
     steps:
 
-      - name: Install Build Dependencies
+      - name: Fetching.....
         run: |
-          curl ${{ inputs.url }}
+          curl -L "${{ inputs.url }}" -o boot.img
+          ls -lh
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2.4.1
