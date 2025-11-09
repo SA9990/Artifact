@@ -23,7 +23,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2.4.1
         with:
-          tag_name: "download-$(date +'%Y%m%d-%H%M%S')"
+          tag_name: "download"
           name: "source = ${{ inputs.url }}"
           files: |
             ${{ github.workspace }}/boot.img
