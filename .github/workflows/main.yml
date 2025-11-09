@@ -1,0 +1,28 @@
+name: Downloader
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL of artifact to be downloaded"
+        required: true
+        default: ""
+        type: string
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+
+      - name: Install Build Dependencies
+        run: |
+          curl ${{ inputs.url }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2.4.1
+        with:
+          tag_name: "${{ inputs.url }}"
+          name: "${{ inputs.url }}"
+          files: |
+            ${{ github.workspace }}/boot.img
